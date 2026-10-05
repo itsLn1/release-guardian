@@ -26,6 +26,9 @@ function importSpecifiers(file: string): string[] {
 }
 
 const isRelative = (s: string): boolean => s.startsWith('./') || s.startsWith('../');
+/** Path with separators normalized to '/', so allow-lists behave the same on Windows and POSIX. */
+const normalize = (file: string): string => file.replace(/\\/g, '/');
+const baseName = (file: string): string => normalize(file).split('/').pop() ?? '';
 
 describe('dependency rules (MASTER_SPEC.md 9.1)', () => {
   it('shared imports nothing but itself', () => {
@@ -49,7 +52,7 @@ describe('dependency rules (MASTER_SPEC.md 9.1)', () => {
     const allowed = new Set(['config.ts', 'container.ts']);
     for (const pkg of ['shared', 'core']) {
       for (const file of sourceFiles(join(root, 'packages', pkg, 'src'))) {
-        if (allowed.has(file.split('/').pop() ?? '')) continue;
+        if (allowed.has(baseName(file))) continue;
         expect(code(file), relative(root, file)).not.toMatch(/\bRELEASE_GUARDIAN_MODE\b/);
       }
     }
