@@ -1,0 +1,19 @@
+{
+  "name": "@release-guardian/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Business logic: ports, engines, orchestrator. Depends only on @release-guardian/shared.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "dependencies": {
+    "@release-guardian/shared": "*"
+  }
+}

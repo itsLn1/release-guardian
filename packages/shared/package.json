@@ -1,0 +1,16 @@
+{
+  "name": "@release-guardian/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Domain types and constants only. No logic, no I/O, no dependencies.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist"]
+}
